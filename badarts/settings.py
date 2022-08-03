@@ -52,7 +52,6 @@ INSTALLED_APPS = [
     'badarts',
     'homepage',
     'products',
-    'static',
     'videos',
     'apis',
 ]
