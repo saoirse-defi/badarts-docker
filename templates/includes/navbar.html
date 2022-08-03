@@ -1,0 +1,33 @@
+<!--Start of navigation bar-->
+<nav class="navbar navbar-expand-md sticky-top">
+    <a class="navbar-brand" href="{% url 'index' %}"><img class="navbar-img"
+            src="https://ik.imagekit.io/iscs6ll976z/nav-logo_gASRyJwIWK?ik-sdk-version=javascript-1.4.3&updatedAt=1649242498226"
+            alt="bad arts logo" /></a>
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#bad-nav" aria-controls="bad-nav"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"><i class="fas fa-bars fa-1x"></i></span>
+    </button>
+    <div class="collapse navbar-collapse" id="bad-nav">
+        <ul class="navbar-nav ml-auto" id="other-items">
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'events' %}">Events</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'gallery' %}">Gallery</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'videos' %}">Videos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'products' %}">Merch</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'recording' %}">Recording</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!--End of Navigation bar-->
