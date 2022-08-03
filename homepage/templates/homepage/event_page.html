@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <a href="{{ event.eventbrite_url }}" target="_blank">
+        {% if event.image_url %}
+        <img class="card-img responsive" src="{{ event.image_url }}" alt="{{ event.name }}">
+        {% else %}
+        <img class="card-img responsive"
+            src="https://ik.imagekit.io/iscs6ll976z/gigs/wfsd_WQese8SPZ?ik-sdk-version=javascript-1.4.3&updatedAt=1649335299966"
+            alt="{{ event.name }}">
+        {% endif %}
+    </a>
+</div>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block content %}
+<h2 class="text-center" id="video-h2">Video Releases</h2>
+<div class="grid-container" id="video-grid-container">
+    {% for video in videos %}
+    {% if video.active %}
+    <div class="grid-item">
+        <iframe src="https://www.youtube.com/embed/{{ video.youtube_id }}" title="{{ video.name }}" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        <h4 style="color: white;">{{ video.name }}</h4>
+        <p>{{ video.display_performer_names }}</p>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+{% endblock %}

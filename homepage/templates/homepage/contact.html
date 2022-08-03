@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <h3 class="text-center" id="contact-h3">Contact Us:</h3>
+    <h4 class="text-center" id="contact-email">badartsentertainment@gmail.com</h4>
+</div>
+<div class="container-fluid" id="contact-details">
+    <div id="map"></div>
+    <!--Google map element-->
+</div>
+{% endblock %}
+
+{% block post_js %}
+<script>
+    function initMap() {
+        const barna = { lat: 53.26255, lng: -9.14917 }; //starting co-ordinates for Google map element
+        const weston = { lat: 52.64883, lng: -8.628142 };
+        var map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 6,
+            center: barna,
+            mapId: "1c5ba11b36cd67b9"
+        });
+
+        const barnainfo = //content for Google map info window
+            '<div id="disland">' +
+            '<h3 id="firstHeading" class="firstHeading">DJ Green\'s studio</h3>' +
+            '<div id="bodyContent">' +
+            "<p>Barna, Galway</p>" +
+            "<p>conor.mcmorrough.gti@gmail.com</p>"
+        "</div>" +
+            "</div>";
+
+        const infowindow = new google.maps.InfoWindow({
+            content: barnainfo,
+            maxWidth: 250
+        });
+
+        const westoninfo = //content for Google map info window
+            '<div id="weston">' +
+            '<h3 id="firstHeading" class="firstHeading">Damz Doherty\'s Studio</h3>' +
+            '<div id="bodyContent">' +
+            "<p>Dooradoyle, Limerick</p>" +
+            "<p>damodoherty11.gti@gmail.com</p>"
+        "</div>" +
+            "</div>";
+
+        const infowindow2 = new google.maps.InfoWindow({
+            content: westoninfo,
+            maxWidth: 250
+        });
+
+        var marker = new google.maps.Marker({
+            position: barna,
+            map: map,
+            animation: google.maps.Animation.DROP
+        });
+
+        var marker2 = new google.maps.Marker({
+            position: weston,
+            map: map,
+            animation: google.maps.Animation.DROP
+        });
+
+        marker.addListener("click", () => { //opens info window content when user clicks on pin
+            infowindow.open(map, marker);
+        });
+
+        marker2.addListener("click", () => { //opens info window content when user clicks on pin
+            infowindow2.open(map, marker2);
+        });
+    }
+</script>
+<script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCMnlvVbjHUS7caLo2H_Kwm3cLPgp_tF1s&map_ids=1c5ba11b36cd67b9&callback=initMap"></script>
+{% endblock %}

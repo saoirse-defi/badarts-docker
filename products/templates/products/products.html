@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3 class="text-center">Items in stock</h3>
+<div class="grid-container" id="instock-merch-container">
+    {% for product in products %}
+    {% if product.in_stock %}
+    <div class="merch">
+        <img class="img-responsive merch-img" src="{{ product.image_url }}" alt="merch1" />
+        <a class="merch-text" href="{% url 'product_detail' product.sku %}">
+            <p>{{ product.name }}</p>
+            <p>€{{ product.price }}</p>
+        </a>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+
+<h3 class="text-center">Out of Stock, back soon!</h3>
+<div class="grid-container" id="outstock-merch-container">
+    {% for product in products %}
+    {% if not product.in_stock %}
+    <div class="merch">
+        <img class="img-responsive merch-img" src="{{ product.image_url }}" alt="merch1" />
+        <a class="merch-text" href="{% url 'product_detail' product.sku %}">
+            <p>{{ product.name }}</p>
+            <p>€{{ product.price }}</p>
+            <p>CURRENTLY OUT OF STOCK</p>
+        </a>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+
+{% endblock %}

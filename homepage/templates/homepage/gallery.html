@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block content %}
+
+<div class="container" id="image-gallery">
+    {% for photo in photos %}
+    {% if photo.gallery_active %}
+    <div class="photo-card center-align">
+        <div class="card-header">
+            {% if photo.image_url %}
+            <img class="card-img responsive" src="{{ photo.image_url }}" alt="{{ photo.title }}">
+            {% endif %}
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+
+{% endblock %}

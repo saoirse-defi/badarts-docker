@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-6">
+        <img id="artist-profile-image" src="{{ artist.image_url }}" alt="{{ artist.name }}" />
+    </div>
+    <div class="col-md-6">
+        <div class="row artist-row">
+            <h2>{{ artist.name }}</h2>
+        </div>
+        <div class="row artist-row">
+            <ul class="social-icons">
+                <li><a class="instagram" href="{{ artist.instagram_url }}" target="_blank"><i
+                            class="fa fa-instagram"></i></a></li>
+                <li><a class="spotify" href="{{ artist.spotify_url }}" target="_blank"><i class="fa fa-spotify"></i></a>
+                </li>
+                <li><a class="bandcamp" href="{{ artist.bandcamp_url }}" target="_blank"><i
+                            class="fa fa-bandcamp"></i></a></li>
+                <li><a class="youtube" href="{{ artist.youtube_url }}" target="_blank"><i class="fa fa-youtube"></i></a>
+                </li>
+            </ul>
+        </div>
+        <div class="row artist-row">
+            <p class="truncate" id="artist-bio">{{ artist.bio }}</p>
+            <div class="truncate-container">
+                <button class="truncate-btn">See More...</button>
+            </div>
+        </div>
+    </div>
+</div>
+<h3 style="margin-top: 25px;">{{ artist.name }}'s Most Recent Releases</h3>
+<div class="row" style="margin-top: 25px;">
+    <div class="grid-container" id="artist-releases-container">
+        {% for release in releases %}
+        {% if release.artist == artist %}
+        {% if release.youtube_url %}
+        <a href="{{ release.youtube_url }}" target="_blank">
+            <img src="{{ release.image_url }}" class="d-block w-100" id="r3" alt="1">
+        </a>
+        {% else %}
+        <img src="{{ release.image_url }}" class="d-block w-100" id="r3" alt="1">
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

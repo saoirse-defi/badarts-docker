@@ -1,5 +1,4 @@
-"""core URL Configuration
-
+"""badarts URL Configuration
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.0/topics/http/urls/
 Examples:
@@ -14,8 +13,22 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
+
+from . import views
+
+handler400 = views.error_handler_400
+handler403 = views.error_handler_403
+handler404 = views.error_handler_404
+handler500 = views.error_handler_500
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('homepage.urls')),
+    path('products/', include('products.urls')),
+    path('videos/', include('videos.urls')),
+    path('accounts/', include('allauth.urls')),
+    path('api/', include('apis.urls'))
 ]

@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!--Start of main carousel.-->
+<div id="carousel-main" class="carousel slide" data-ride="carousel" data-interval="3000">
+    <ol class="carousel-indicators">
+        <li data-target="#carousel-main" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-main" data-slide-to="1"></li>
+        <li data-target="#carousel-main" data-slide-to="2"></li>
+        <li data-target="#carousel-main" data-slide-to="3"></li>
+        <li data-target="#carousel-main" data-slide-to="4"></li>
+        <li data-target="#carousel-main" data-slide-to="5"></li>
+        <li data-target="#carousel-main" data-slide-to="6"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="https://ik.imagekit.io/iscs6ll976z/artists/thjy_DwAWV3Sew?ik-sdk-version=javascript-1.4.3&updatedAt=1649338317312"
+                class="carousel-img d-block w-100" id="r3" alt="1">
+            <div class="carousel-caption">
+                <div class="container jumbo-text">
+                    <h3 class="display-4">Bad Arts Crew</h3>
+                    <p class="lead">Weston, Limerick </p>
+                </div>
+            </div>
+        </div>
+        {% for photo in photos %}
+        {% if photo.carousel_active %}
+        <div class="carousel-item" id="{{ photo.title }}">
+            {% if photo.url %}
+            <a href="{{ photo.url }}" target="_blank">
+                <img src="{{ photo.image_url }}" class="carousel-img d-block w-100" id="r3" alt="1">
+                <div class="carousel-caption">
+                    <div class="container jumbo-text">
+                        <h3 class="display-4">{{ photo.title }}</h3>
+                        <p class="lead">{{ photo.display_performer_names }}</p>
+                    </div>
+                </div>
+            </a>
+            {% else %}
+            <img src="{{ photo.image_url }}" class="carousel-img d-block w-100" id="r3" alt="1">
+            <div class="carousel-caption">
+                <div class="container jumbo-text">
+                    <h3 class="display-4">{{ photo.title }}</h3>
+                    <p class="lead">{{ photo.display_performer_names }}</p>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+    <a class="carousel-control-prev" href="#carousel-main" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carousel-main" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+<!--End of main carousel-->
+
+<div class="grid-container" id="artist-grid-container">
+    <div class="artist-card center-align">
+        <div class="card-header">
+            <a href="{% url 'artist_profile' '6380abdc-5279-4e6f-b106-acb09d0a5628' %}">
+                <img class="card-img responsive"
+                    src="https://ik.imagekit.io/badartsentertainment/green_1_zIGyH_h6U?ik-sdk-version=javascript-1.4.3&updatedAt=1649696452470"
+                    alt="DJ Green">
+            </a>
+        </div>
+        <div class="card-body">
+            <h4>DJ Green</h4>
+        </div>
+    </div>
+    {% for artist in artists %}
+    {% if artist.active %}
+    <div class="artist-card center-align">
+        <div class="card-header">
+            {% if artist.image_url %}
+            <a href="{% url 'artist_profile' artist.id %}">
+                <img class="card-img responsive" src="{{ artist.image_url }}" alt="{{ artist.name }}">
+            </a>
+            {% endif %}
+        </div>
+        <div class="card-body">
+            <h4>{{ artist.name }}</h4>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+
+{% endblock %}

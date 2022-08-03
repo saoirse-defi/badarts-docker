@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+{% endblock %}
+
+{% block content %}
+<h2 class="text-center">Upcoming Events</h2>
+<div class="row">
+    <div class="grid-container event-grid-container">
+        {% for event in event_list %}
+        {% if not event.expired %}
+        <a class="event-item" target="_blank"
+            href="{% if event.eventbrite_url %}{{ event.eventbrite_url }}{% else %}{% endif %}">
+            {% if event.image_url %}
+            <img class="card-img responsive" src="{{ event.image_url }}" alt="{{ event.name }}">
+            {% else %}
+            <img class="card-img responsive"
+                src="https://ik.imagekit.io/iscs6ll976z/gigs/wfsd_WQese8SPZ?ik-sdk-version=javascript-1.4.3&updatedAt=1649335299966"
+                alt="{{ event.name }}">
+            {% endif %}
+        </a>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+<h2 class="text-center margin-row">Past Events</h2>
+<div class="row margin-row">
+    <div class="grid-container event-grid-container">
+        {% for event in event_list %}
+        {% if event.expired %}
+        <a class="event-item" target="_blank" href="{{ event.eventbrite_url }}">
+            {% if event.image_url %}
+            <img class="card-img responsive" src="{{ event.image_url }}" alt="{{ event.name }}">
+            {% else %}
+            <img class="card-img responsive"
+                src="https://ik.imagekit.io/iscs6ll976z/gigs/wfsd_WQese8SPZ?ik-sdk-version=javascript-1.4.3&updatedAt=1649335299966"
+                alt="{{ event.name }}">
+            {% endif %}
+        </a>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
